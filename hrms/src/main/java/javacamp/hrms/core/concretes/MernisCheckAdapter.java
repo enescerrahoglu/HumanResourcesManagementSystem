@@ -2,6 +2,7 @@ package javacamp.hrms.core.concretes;
 
 import java.rmi.RemoteException;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javacamp.hrms.core.abstracts.MernisCheckService;
@@ -9,6 +10,7 @@ import javacamp.hrms.entities.concretes.JobSeeker;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 @Component
+@Primary
 public class MernisCheckAdapter implements MernisCheckService {
 
 	@Override
@@ -18,8 +20,8 @@ public class MernisCheckAdapter implements MernisCheckService {
 		try {
 			result=client.TCKimlikNoDogrula(
 						Long.valueOf(jobSeeker.getIdentification_number()), 
-						jobSeeker.getFirst_name(), 
-						jobSeeker.getLast_name(), 
+						jobSeeker.getFirst_name().toUpperCase(), 
+						jobSeeker.getLast_name().toUpperCase(), 
 						jobSeeker.getBirth_year());
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

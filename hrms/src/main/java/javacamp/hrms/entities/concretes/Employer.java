@@ -1,9 +1,14 @@
 package javacamp.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javacamp.hrms.entities.abstracts.Entities;
 import javacamp.hrms.entities.abstracts.User;
@@ -17,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "employers")
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdvertisement"})
 public class Employer extends User implements Entities {
 	
 	@Column(name = "company_name")
@@ -30,6 +36,9 @@ public class Employer extends User implements Entities {
 	
 	@Column(name="verification_status")
 	private boolean verificationStatus;
+	
+	 @OneToMany(mappedBy = "employer")
+	 private List<JobAdvertisement> jobAdvertisement;
 
 	public Employer(String email, String password, String company_name, String website, String phone_number, boolean verificationStatus) {
 		super(email, password);
