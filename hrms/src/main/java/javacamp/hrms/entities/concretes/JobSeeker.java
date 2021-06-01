@@ -20,23 +20,23 @@ import lombok.NoArgsConstructor;
 public class JobSeeker extends User implements Entities {
 	
 	@Column(name = "first_name")
-	private String first_name;
+	private String firstName;
 	
 	@Column(name = "last_name")
-	private String last_name;
+	private String lastName;
 	
 	@Column(name = "identification_number")
-	private String identification_number;
+	private String identificationNumber;
 	
 	@Column(name = "birth_year")
-	private int birth_year;
+	private int birthYear;
 
-	public JobSeeker(String email, String password,String first_name, String last_name, String identification_number, int birth_year) {
+	public JobSeeker(String email, String password,String firstName, String lastName, String identificationNumber, int birthYear) {
 		super(email, password);
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.identification_number = identification_number;
-		this.birth_year = birth_year;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.identificationNumber = identificationNumber;
+		this.birthYear = birthYear;
 	}
 	
 }

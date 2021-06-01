@@ -51,7 +51,7 @@ public class JobSeekerManager implements JobSeekerService {
 		Result result = new ErrorResult("Kayıt Başarısız!");
 		if (emailCheckService.emailCheck(jobSeeker.getEmail())
 				&& emailIsItUsed(jobSeeker.getEmail())
-				&& identificationNumberIsItUsed(jobSeeker.getIdentification_number())
+				&& identificationNumberIsItUsed(jobSeeker.getIdentificationNumber())
 				&& mernisCheckService.checkIfRealPerson(jobSeeker)) {
 			emailSendService.emailSend(jobSeeker.getEmail());
 			this.jobSeekerDao.save(jobSeeker);
@@ -76,7 +76,7 @@ public class JobSeekerManager implements JobSeekerService {
 	@Override
 	public List<String> getAllIdentificationNumber() {
 		for (int i = 0; i < getAll().size(); i++) {
-			identificationNumbers.add(getAll().get(i).getIdentification_number());
+			identificationNumbers.add(getAll().get(i).getIdentificationNumber());
 		}
 		return identificationNumbers;
 	}

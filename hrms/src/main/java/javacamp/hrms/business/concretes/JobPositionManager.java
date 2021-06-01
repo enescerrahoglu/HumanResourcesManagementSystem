@@ -31,7 +31,7 @@ public class JobPositionManager implements JobPositionService {
 	@Override
 	public Result add(JobPosition jobPosition) {
 		Result result = new ErrorResult("İş Pozisyonu Eklenemedi!");
-		if (positionIsItUsed(jobPosition.getName())) {
+		if (positionIsItUsed(jobPosition.getJobPositionName())) {
 			this.jobPositionDao.save(jobPosition);
 			result = new SuccessResult("İş Pozisyonu Başarıyla Eklendi!");
 		}
@@ -41,7 +41,7 @@ public class JobPositionManager implements JobPositionService {
 	public boolean positionIsItUsed(String positionName) {
 		boolean result = true;
 		for (int i = 0; i < getAll().size(); i++) {
-			if (getAll().get(i).getName() == positionName) {
+			if (getAll().get(i).getJobPositionName() == positionName) {
 				result = false;
 			}
 		}

@@ -26,13 +26,13 @@ import lombok.NoArgsConstructor;
 public class Employer extends User implements Entities {
 	
 	@Column(name = "company_name")
-	private String company_name;
+	private String companyName;
 	
 	@Column(name = "website")
 	private String website;
 	
 	@Column(name = "phone_number")
-	private String phone_number;
+	private String phoneNumber;
 	
 	@Column(name="verification_status")
 	private boolean verificationStatus;
@@ -42,9 +42,9 @@ public class Employer extends User implements Entities {
 
 	public Employer(String email, String password, String company_name, String website, String phone_number, boolean verificationStatus) {
 		super(email, password);
-		this.company_name = company_name;
+		this.companyName = company_name;
 		this.website = website;
-		this.phone_number = phone_number;
+		this.phoneNumber = phone_number;
 		this.verificationStatus = verificationStatus;
 	}
 	

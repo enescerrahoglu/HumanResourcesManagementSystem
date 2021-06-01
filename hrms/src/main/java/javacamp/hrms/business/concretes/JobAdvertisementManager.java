@@ -15,6 +15,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import javacamp.hrms.entities.concretes.JobAdvertisement;
+import javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
@@ -35,12 +36,12 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		Sort sort = Sort.by(Direction.ASC, "applicationDeadline");
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort), "İş İlanları Listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort), "iş ilanları listelendi.");
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployer_id(int userId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(userId), "Firmanın İş İlanları Listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(userId), "Firmanın iş ilanları listelendi.");
 	}
 
 	@Override
@@ -49,15 +50,15 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		if (status == false) {
 			message = "Pasif ";
 		}
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByAdvertisementStatus(status), message + " İş İlanları Listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByAdvertisementStatus(status), message + " iş ilanları listelendi.");
 	}
 
 	@Override
 	public Result addJobAdvertisement(JobAdvertisement jobAdvertisement) {
-		Result result = new ErrorResult("Ekleme Başarısız!");
+		Result result = new ErrorResult("Ekleme başarısız!");
 		if (!jobAdvertisement.getJobDescription().isEmpty()) {
 			this.jobAdvertisementDao.save(jobAdvertisement);
-			result = new SuccessResult("Ekleme Başarılı!");
+			result = new SuccessResult("Ekleme başarılı!");
 		}
 		return result;
 	}
@@ -65,7 +66,17 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(int jobAdvertisementId, int employerId) {
 		this.jobAdvertisementDao.updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(jobAdvertisementId, employerId);
-		return new SuccessResult("İlan Kapatıldı!");
+		return new SuccessResult("İlan kapatıldı!");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveSorted() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllActiveSorted(), "İş ilanları listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementWithEmployerWithJobPositionDto>> getJobAdvertisementWithEmployerWithJobPositionDetails() {
+		return new SuccessDataResult<List<JobAdvertisementWithEmployerWithJobPositionDto>>(this.jobAdvertisementDao.getJobAdvertisementWithEmployerWithJobPositionDetails(), "İş ilanları tablo yapısında listelendi.");
 	}
 
 }

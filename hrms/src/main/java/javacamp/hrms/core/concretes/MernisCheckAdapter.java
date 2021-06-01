@@ -19,10 +19,10 @@ public class MernisCheckAdapter implements MernisCheckService {
 		boolean result=false;
 		try {
 			result=client.TCKimlikNoDogrula(
-						Long.valueOf(jobSeeker.getIdentification_number()), 
-						jobSeeker.getFirst_name().toUpperCase(), 
-						jobSeeker.getLast_name().toUpperCase(), 
-						jobSeeker.getBirth_year());
+						Long.valueOf(jobSeeker.getIdentificationNumber()), 
+						jobSeeker.getFirstName().toUpperCase(), 
+						jobSeeker.getLastName().toUpperCase(), 
+						jobSeeker.getBirthYear());
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

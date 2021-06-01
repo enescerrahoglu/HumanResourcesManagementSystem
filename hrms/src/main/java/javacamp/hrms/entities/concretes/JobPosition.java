@@ -27,10 +27,10 @@ public class JobPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private int jobPositionId;
 	
 	@Column(name = "name")
-	private String name;
+	private String jobPositionName;
 	
 	@OneToMany(mappedBy = "position")
 	 private List<JobAdvertisement> jobAdvertisement;

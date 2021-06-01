@@ -21,18 +21,18 @@ import lombok.NoArgsConstructor;
 public class SystemPersonnel extends User implements Entities {
 	
 	@Column(name = "department_id")
-	private int department_id;
+	private int departmentId;
 	
 	@Column(name = "first_name")
-	private String first_name;
+	private String firstName;
 	
 	@Column(name = "last_name")
-	private String last_name;
+	private String lastName;
 
-	public SystemPersonnel(int department_id, String email, String password, String firstName, String lastName) {
+	public SystemPersonnel(int departmentId, String email, String password, String firstName, String lastName) {
 		super(email, password);
-		this.department_id = department_id;
-		this.first_name = firstName;
-		this.last_name = lastName;
+		this.departmentId = departmentId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 }

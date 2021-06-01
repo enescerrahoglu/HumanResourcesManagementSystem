@@ -16,6 +16,7 @@ import javacamp.hrms.business.abstracts.JobAdvertisementService;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.JobAdvertisement;
+import javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDto;
 
 @RestController
 @RequestMapping("/api/jobAdvertisement")
@@ -33,14 +34,23 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.getAll();
 	}
 
-	@GetMapping("/getAllActive")
+	@GetMapping("/getAllActives")
 	public DataResult<List<JobAdvertisement>> getByAdvertisementStatus(@RequestParam boolean status) {
 		return this.jobAdvertisementService.getByAdvertisementStatus(status);
 	}
 
-	@GetMapping("/getAllActiveSorted")
+	@GetMapping("/getAllSorted")
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		return this.jobAdvertisementService.getAllSorted();
+	}
+	
+	@GetMapping("/getAllActiveSorted")
+	public DataResult<List<JobAdvertisement>> getAllActiveSorted() {
+		return this.jobAdvertisementService.getAllActiveSorted();
+	}
+	@GetMapping("/getJobAdvertisementWithEmployerWithJobPositionDetails")
+	public DataResult<List<JobAdvertisementWithEmployerWithJobPositionDto>> getJobAdvertisementWithEmployerWithJobPositionDetails() {
+		return this.jobAdvertisementService.getJobAdvertisementWithEmployerWithJobPositionDetails();
 	}
 
 	@GetMapping("/getByEmployerJobAdvertisements")
