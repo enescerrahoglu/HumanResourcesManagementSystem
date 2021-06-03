@@ -5,8 +5,43 @@ BEGIN;
 
 CREATE TABLE public.cities
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 20000 CACHE 1 ),
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cv_foreign_languages
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    foreign_language_id integer NOT NULL,
+    language_level_id integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cv_social_media
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    social_media_id integer NOT NULL,
+    link character varying(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cv_technologies
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    technology_id integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cvs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_id integer NOT NULL,
+    photo_link character varying(255) NOT NULL,
+    objective character varying(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -14,6 +49,17 @@ CREATE TABLE public.departments
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name character varying(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.education_informations
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    university_id integer NOT NULL,
+    university_department_id integer NOT NULL,
+    starting_date character varying(50) NOT NULL,
+    graduation_date character varying(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -27,9 +73,16 @@ CREATE TABLE public.employers
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE public.foreign_languages
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE public.job_advertisements
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 20300 CACHE 1 ),
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     city_id integer NOT NULL,
     job_description character varying(255) NOT NULL,
     max_salary integer,
@@ -60,6 +113,20 @@ CREATE TABLE public.job_seekers
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE public.language_levels
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.social_media
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE public.system_personnel
 (
     user_id integer NOT NULL,
@@ -69,6 +136,27 @@ CREATE TABLE public.system_personnel
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE public.technologies
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.universities
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.university_departments
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE public.users
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 9 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
@@ -76,6 +164,89 @@ CREATE TABLE public.users
     password character varying(250) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE public.work_experiences
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    position_id integer NOT NULL,
+    workplace_name character varying(100) NOT NULL,
+    starting_date character varying(50) NOT NULL,
+    ending_date character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE public.cv_foreign_languages
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_foreign_languages
+    ADD FOREIGN KEY (foreign_language_id)
+    REFERENCES public.cv_foreign_languages (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_foreign_languages
+    ADD FOREIGN KEY (language_level_id)
+    REFERENCES public.language_levels (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_foreign_languages
+    ADD FOREIGN KEY (foreign_language_id)
+    REFERENCES public.foreign_languages (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_social_media
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_social_media
+    ADD FOREIGN KEY (social_media_id)
+    REFERENCES public.social_media (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_technologies
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cv_technologies
+    ADD FOREIGN KEY (technology_id)
+    REFERENCES public.technologies (id)
+    NOT VALID;
+
+
+ALTER TABLE public.cvs
+    ADD FOREIGN KEY (job_seeker_id)
+    REFERENCES public.job_seekers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.education_informations
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.education_informations
+    ADD FOREIGN KEY (university_department_id)
+    REFERENCES public.university_departments (id)
+    NOT VALID;
+
+
+ALTER TABLE public.education_informations
+    ADD FOREIGN KEY (university_id)
+    REFERENCES public.universities (id)
+    NOT VALID;
+
 
 ALTER TABLE public.employers
     ADD FOREIGN KEY (user_id)
@@ -116,6 +287,18 @@ ALTER TABLE public.system_personnel
 ALTER TABLE public.system_personnel
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.work_experiences
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.work_experiences
+    ADD FOREIGN KEY (position_id)
+    REFERENCES public.job_positions (id)
     NOT VALID;
 
 END;

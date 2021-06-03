@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class User {
 	@Column(name = "id")
 	private int id;
 	
+	@Email(message = "Email should be valid")
 	@Column(name = "email")
 	private String email;
 	

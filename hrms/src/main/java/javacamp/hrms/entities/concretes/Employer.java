@@ -37,8 +37,8 @@ public class Employer extends User implements Entities {
 	@Column(name="verification_status")
 	private boolean verificationStatus;
 	
-	 @OneToMany(mappedBy = "employer")
-	 private List<JobAdvertisement> jobAdvertisement;
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvertisement> jobAdvertisement;
 
 	public Employer(String email, String password, String company_name, String website, String phone_number, boolean verificationStatus) {
 		super(email, password);

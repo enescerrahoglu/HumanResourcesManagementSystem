@@ -18,20 +18,20 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdvertisement"})
-public class JobPosition {
+@Table(name="foreign_languages")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cvForeignLanguages"})
+public class ForeignLanguage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int jobPositionId;
+	private int foreignLanguageId;
 	
 	@Column(name = "name")
-	private String jobPositionName;
+	private String foreignLanguageName;
 	
-	@OneToMany(mappedBy = "position")
-	private List<JobAdvertisement> jobAdvertisement;
+	@OneToMany(mappedBy = "foreignLanguage")
+	private List<CvForeignLanguage> cvForeignLanguages;
 }
