@@ -27,7 +27,7 @@ public class EducationInformationsController {
 		this.educationInformationService = educationInformationService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<EducationInformation>> getAll(){
 		return this.educationInformationService.getAll();
 	}

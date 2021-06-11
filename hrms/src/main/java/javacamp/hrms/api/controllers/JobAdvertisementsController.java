@@ -19,7 +19,7 @@ import javacamp.hrms.entities.concretes.JobAdvertisement;
 import javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDto;
 
 @RestController
-@RequestMapping("/api/jobAdvertisement")
+@RequestMapping("/api/jobAdvertisements")
 public class JobAdvertisementsController {
 	private JobAdvertisementService jobAdvertisementService;
 

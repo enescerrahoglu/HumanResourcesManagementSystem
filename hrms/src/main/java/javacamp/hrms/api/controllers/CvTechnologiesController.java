@@ -25,7 +25,7 @@ public class CvTechnologiesController {
 		this.cvTechnologyService = cvTechnologyService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<CvTechnology>> getAll(){
 		return this.cvTechnologyService.getAll();
 	}

@@ -26,7 +26,7 @@ public class DepartmentsController {
 		this.departmentService = departmentService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<Department>> getAll(){
 		return this.departmentService.getAll();
 	}

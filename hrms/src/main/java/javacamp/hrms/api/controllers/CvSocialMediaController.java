@@ -25,7 +25,7 @@ public class CvSocialMediaController {
 		this.cvSocialMediaService = cvSocialMediaService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<CvSocialMedia>> getAll() {
 		return this.cvSocialMediaService.getAll();
 	}

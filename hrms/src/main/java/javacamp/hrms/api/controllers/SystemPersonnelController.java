@@ -15,7 +15,7 @@ import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.SystemPersonnel;
 
 @RestController
-@RequestMapping("/api/systempersonnel")
+@RequestMapping("/api/systemPersonnel")
 public class SystemPersonnelController {
 
 	private SystemPersonnelService systemPersonnelService;
@@ -26,7 +26,7 @@ public class SystemPersonnelController {
 		this.systemPersonnelService = systemPersonnelService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<SystemPersonnel>> getAll(){
 		return this.systemPersonnelService.getAll();
 	}

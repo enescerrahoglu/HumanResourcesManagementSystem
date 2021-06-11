@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javacamp.hrms.entities.abstracts.Entities;
@@ -37,6 +38,7 @@ public class Employer extends User implements Entities {
 	@Column(name="verification_status")
 	private boolean verificationStatus;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisement;
 

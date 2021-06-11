@@ -14,7 +14,7 @@ import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.JobPosition;
 
 @RestController
-@RequestMapping("/api/jobpositions")
+@RequestMapping("/api/jobPositions")
 public class JobPositionsController {
 
 	private JobPositionService jobPositionService;
@@ -25,7 +25,7 @@ public class JobPositionsController {
 		this.jobPositionService = jobPositionService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public List<JobPosition> getAll(){
 		return this.jobPositionService.getAll();
 	}

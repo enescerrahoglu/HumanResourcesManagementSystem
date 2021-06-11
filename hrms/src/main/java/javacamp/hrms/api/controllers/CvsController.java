@@ -26,7 +26,7 @@ public class CvsController {
 		this.cvService = cvService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<Cv>> getAll(){
 		return this.cvService.getAll();
 	}

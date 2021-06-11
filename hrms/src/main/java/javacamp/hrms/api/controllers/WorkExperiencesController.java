@@ -27,7 +27,7 @@ public class WorkExperiencesController {
 		this.workExperienceService = workExperienceService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<WorkExperience>> getAll(){
 		return this.workExperienceService.getAll();
 	}

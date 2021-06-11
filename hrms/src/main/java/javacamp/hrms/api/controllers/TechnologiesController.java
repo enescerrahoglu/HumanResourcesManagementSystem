@@ -7,23 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javacamp.hrms.business.abstracts.UniversityService;
+import javacamp.hrms.business.abstracts.TechnologyService;
 import javacamp.hrms.core.utilities.results.DataResult;
-import javacamp.hrms.entities.concretes.University;
+import javacamp.hrms.entities.concretes.Technology;
 
 @RestController
-@RequestMapping("/api/universities")
-public class UniversitiesController {
-	private UniversityService universityService;
+@RequestMapping("/api/technologies")
+public class TechnologiesController {
 
-	@Autowired
-	public UniversitiesController(UniversityService universityService) {
-		super();
-		this.universityService = universityService;
-	}
+	private TechnologyService technologyService;
 	
+	@Autowired
+	public TechnologiesController(TechnologyService technologyService) {
+		super();
+		this.technologyService = technologyService;
+	}
+
 	@GetMapping("/getAll")
-	public DataResult<List<University>> getAll() {
-		return this.universityService.getAll();
+	public DataResult<List<Technology>> getAll() {
+		return this.technologyService.getAll();
 	}
 }
