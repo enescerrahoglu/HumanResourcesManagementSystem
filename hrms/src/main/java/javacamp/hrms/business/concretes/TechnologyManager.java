@@ -24,7 +24,7 @@ public class TechnologyManager implements TechnologyService {
 
 	@Override
 	public DataResult<List<Technology>> getAll() {
-		return new SuccessDataResult<List<Technology>>(this.technologyDao.findAll());
+		return new SuccessDataResult<List<Technology>>(this.technologyDao.findAll(), "Teknolojiler listelendi.");
 	}
 
 }

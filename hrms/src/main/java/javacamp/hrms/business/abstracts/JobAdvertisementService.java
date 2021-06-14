@@ -11,6 +11,8 @@ public interface JobAdvertisementService {
 	
 	public List<JobAdvertisement> getAll();
 	
+	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id);
+	
 	public DataResult<List<JobAdvertisement>> getAllSorted();
 	
 	public DataResult<List<JobAdvertisement>> getAllActiveSorted();
@@ -18,6 +20,8 @@ public interface JobAdvertisementService {
 	public DataResult<List<JobAdvertisement>> getByEmployer_id(int userId);
 	
 	public DataResult<List<JobAdvertisement>> getByAdvertisementStatus(boolean status);	
+	
+	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status);
 	
 	public Result addJobAdvertisement(JobAdvertisement jobAdvertisement);
 	

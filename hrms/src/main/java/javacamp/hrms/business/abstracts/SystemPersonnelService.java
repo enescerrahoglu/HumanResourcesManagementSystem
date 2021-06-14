@@ -9,4 +9,5 @@ import javacamp.hrms.entities.concretes.SystemPersonnel;
 public interface SystemPersonnelService {
 	public DataResult<List<SystemPersonnel>> getAll();
 	public Result register(SystemPersonnel systemPersonnel);
+	public Result updateEmployerSetVerificationStatusForUserId(int employerId);
 }

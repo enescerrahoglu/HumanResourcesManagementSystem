@@ -1,17 +1,20 @@
 package javacamp.hrms.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Objects;
+
 import javacamp.hrms.business.abstracts.JobSeekerService;
 import javacamp.hrms.core.abstracts.EmailCheckService;
 import javacamp.hrms.core.abstracts.EmailSendService;
 import javacamp.hrms.core.abstracts.MernisCheckService;
+import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.ErrorResult;
 import javacamp.hrms.core.utilities.results.Result;
+import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.JobSeekerDao;
 import javacamp.hrms.entities.concretes.JobSeeker;
@@ -23,8 +26,6 @@ public class JobSeekerManager implements JobSeekerService {
 	private EmailCheckService emailCheckService;
 	private EmailSendService emailSendService;
 	private MernisCheckService mernisCheckService;
-	private List<String> emails = new ArrayList<>();
-	private List<String> identificationNumbers = new ArrayList<>();
 	
 	@Autowired
 	public JobSeekerManager(EmailCheckService emailCheckService, JobSeekerDao jobSeekerDao, EmailSendService emailSendService, MernisCheckService mernisCheckService) {
@@ -34,25 +35,15 @@ public class JobSeekerManager implements JobSeekerService {
 		this.emailSendService = emailSendService;
 		this.mernisCheckService = mernisCheckService;
 	}
-
+	
 	@Override
-	public Result login(String email, String password) {
-		Result result = new ErrorResult("Giriş Başarısız!");
-		for (int i = 0; i < getAll().size(); i++) {
-			if (getAll().get(i).getEmail() == email && getAll().get(i).getPassword() == password) {
-				result = new SuccessResult("Giriş Başarılı!");
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public Result register(JobSeeker jobSeeker) {
+	public Result register(JobSeeker jobSeeker, String passwordAgain) {
 		Result result = new ErrorResult("Kayıt Başarısız!");
 		if (emailCheckService.emailCheck(jobSeeker.getEmail())
 				&& emailIsItUsed(jobSeeker.getEmail())
 				&& identificationNumberIsItUsed(jobSeeker.getIdentificationNumber())
-				&& mernisCheckService.checkIfRealPerson(jobSeeker)) {
+				&& mernisCheckService.checkIfRealPerson(jobSeeker)
+				&& Objects.equal(passwordAgain, jobSeeker.getPassword())) {
 			emailSendService.emailSend(jobSeeker.getEmail());
 			this.jobSeekerDao.save(jobSeeker);
 			result = new SuccessResult("Kayıt Başarılı.");
@@ -61,24 +52,18 @@ public class JobSeekerManager implements JobSeekerService {
 	}
 
 	@Override
-	public List<JobSeeker> getAll() {
-		return this.jobSeekerDao.findAll();
+	public DataResult<List<JobSeeker>> getAll() {
+		return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Data Listelendi");
 	}
 
 	@Override
 	public List<String> getAllEmails() {
-		for (int i = 0; i < getAll().size(); i++) {
-			emails.add(getAll().get(i).getEmail());
-		}
-		return emails;
+		return this.jobSeekerDao.getByEmail();
 	}
 
 	@Override
 	public List<String> getAllIdentificationNumber() {
-		for (int i = 0; i < getAll().size(); i++) {
-			identificationNumbers.add(getAll().get(i).getIdentificationNumber());
-		}
-		return identificationNumbers;
+		return this.jobSeekerDao.getByIdentificationNumber();
 	}
 	
 	public boolean emailIsItUsed(String email) {

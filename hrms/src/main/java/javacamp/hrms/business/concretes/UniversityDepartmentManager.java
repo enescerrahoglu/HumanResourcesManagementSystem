@@ -24,7 +24,7 @@ public class UniversityDepartmentManager implements UniversityDepartmentService 
 
 	@Override
 	public DataResult<List<UniversityDepartment>> getAll() {
-		return new SuccessDataResult<List<UniversityDepartment>>(this.universityDepartmentDao.findAll());
+		return new SuccessDataResult<List<UniversityDepartment>>(this.universityDepartmentDao.findAll(), "Üniversite bölümleri listelendi.");
 	}
 
 }

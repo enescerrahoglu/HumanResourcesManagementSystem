@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDt
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
+@CrossOrigin
 public class JobAdvertisementsController {
 	private JobAdvertisementService jobAdvertisementService;
 
@@ -32,6 +34,11 @@ public class JobAdvertisementsController {
 	@GetMapping("/getAll")
 	public List<JobAdvertisement> getAll() {
 		return this.jobAdvertisementService.getAll();
+	}
+	
+	@GetMapping("/getByJobAdvertisementId")
+	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id){
+		return this.jobAdvertisementService.getByJobAdvertisementId(id);
 	}
 
 	@GetMapping("/getAllActives")
@@ -56,6 +63,11 @@ public class JobAdvertisementsController {
 	@GetMapping("/getByEmployerJobAdvertisements")
 	public DataResult<List<JobAdvertisement>> getByEmployer_id(@RequestParam int userId) {
 		return this.jobAdvertisementService.getByEmployer_id(userId);
+	}
+	
+	@GetMapping("/getAllApproveStatus")
+	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status){
+		return this.jobAdvertisementService.getAllApproveStatus(status);
 	}
 
 	@PostMapping("/add")

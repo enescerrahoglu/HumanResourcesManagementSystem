@@ -79,4 +79,18 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		return new SuccessDataResult<List<JobAdvertisementWithEmployerWithJobPositionDto>>(this.jobAdvertisementDao.getJobAdvertisementWithEmployerWithJobPositionDetails(), "İş ilanları tablo yapısında listelendi.");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByJobAdvertisementId(id), "İş ilanı bilgisi listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status) {
+		String message = "Onaylanan ";
+		if (status == false) {
+			message = "Onaylanmayan ";
+		}
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByApprovalStatus(status), message + " iş ilanları listelendi.");
+	}
+
 }

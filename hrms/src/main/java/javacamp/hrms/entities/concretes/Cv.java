@@ -58,4 +58,8 @@ public class Cv {
 	@JsonIgnore
 	@OneToMany(mappedBy = "cv")
 	private List<WorkExperience> workExperiences;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cv")
+	private List<Photo> photo;
 }

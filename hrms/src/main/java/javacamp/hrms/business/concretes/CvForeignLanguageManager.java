@@ -12,6 +12,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CvForeignLanguageDao;
 import javacamp.hrms.entities.concretes.CvForeignLanguage;
+import javacamp.hrms.entities.dtos.CvForeignLanguageWithForeignLanguageDto;
 
 @Service
 public class CvForeignLanguageManager implements CvForeignLanguageService {
@@ -33,6 +34,11 @@ public class CvForeignLanguageManager implements CvForeignLanguageService {
 	public Result add(CvForeignLanguage cvForeignLanguage) {
 		this.cvForeignLanguageDao.save(cvForeignLanguage);
 		return new SuccessResult("CV'ye yabancı dil bilgisi eklendi.");
+	}
+
+	@Override
+	public DataResult<List<CvForeignLanguageWithForeignLanguageDto>> getCvForeignLanguageWithForeignLanguageDetails(int cvId) {
+		return new SuccessDataResult<>(this.cvForeignLanguageDao.getCvForeignLanguageWithForeignLanguageDetails(cvId), "Yabancı dil bilgileri listelendi.");
 	}
 	
 }

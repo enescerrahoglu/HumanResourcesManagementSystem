@@ -10,7 +10,6 @@ import javacamp.hrms.entities.concretes.JobSeeker;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 @Component
-@Primary
 public class MernisCheckAdapter implements MernisCheckService {
 
 	@Override

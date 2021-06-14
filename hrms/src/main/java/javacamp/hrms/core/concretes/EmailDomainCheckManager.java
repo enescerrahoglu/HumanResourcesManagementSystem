@@ -1,5 +1,6 @@
 package javacamp.hrms.core.concretes;
 
+
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Objects;

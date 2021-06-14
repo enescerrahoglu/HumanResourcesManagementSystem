@@ -24,7 +24,7 @@ public class SocialMediaManager implements SocialMediaService {
 
 	@Override
 	public DataResult<List<SocialMedia>> getAll() {
-		return new SuccessDataResult<List<SocialMedia>>(this.socialMediaDao.findAll());
+		return new SuccessDataResult<List<SocialMedia>>(this.socialMediaDao.findAll(), "Sosyal medya platformları listelendi.");
 	}
 
 }

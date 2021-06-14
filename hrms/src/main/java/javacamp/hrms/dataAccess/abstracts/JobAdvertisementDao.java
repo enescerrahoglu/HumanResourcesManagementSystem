@@ -15,7 +15,11 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	@Query("From JobAdvertisement where advertisementStatus=true ORDER BY applicationDeadline DESC")
 	List<JobAdvertisement> getAllActiveSorted();
 	
+	List<JobAdvertisement> getByJobAdvertisementId(int id);
+	
 	List<JobAdvertisement> getByAdvertisementStatus(boolean status);
+	
+	List<JobAdvertisement> getByApprovalStatus(boolean status);
 	
 	JobAdvertisement getByJobAdvertisementIdAndEmployer_id(int jobAdvertisementId, int userId);
 	

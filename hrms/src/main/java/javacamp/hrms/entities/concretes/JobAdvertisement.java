@@ -11,12 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "job_advertisements")
 public class JobAdvertisement {
 	@Id
@@ -45,6 +47,9 @@ public class JobAdvertisement {
 	@Column(name="release_date")
 	private Date releaseDate;
 	
+	@Column(name ="approval_status")
+	private boolean approvalStatus;
+	
 	@ManyToOne
 	@JoinColumn(name="position_id")
 	private JobPosition position;
@@ -56,6 +61,14 @@ public class JobAdvertisement {
 	@ManyToOne
 	@JoinColumn(name="city_id")
 	private City city;
+	
+	@ManyToOne
+	@JoinColumn(name = "work_time_type_id")
+	private WorkTimeType workTimeType;
+	
+	@ManyToOne
+	@JoinColumn(name = "work_type_id")
+	private WorkType workType;
 	
 	public JobAdvertisement(String jobDescription, int maxSalary, int minSalary, int positionAmount, Date applicationDeadline, boolean advertisementStatus) {
 		super();

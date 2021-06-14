@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Objects;
+
 import javacamp.hrms.business.abstracts.EmployerService;
+import javacamp.hrms.core.abstracts.EmailDomainCheckService;
 import javacamp.hrms.core.abstracts.EmailSendService;
 import javacamp.hrms.core.utilities.results.ErrorResult;
 import javacamp.hrms.core.utilities.results.Result;
@@ -19,6 +22,7 @@ public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;
 	private EmailSendService emailSendService;
+	private EmailDomainCheckService emailDomainChekService;
 	private List<String> emails = new ArrayList<String>();
 
 	@Autowired
@@ -40,11 +44,14 @@ public class EmployerManager implements EmployerService {
 	}
 
 	@Override
-	public Result register(Employer employer) {
+	public Result register(Employer employer, String passwordAgain) {
 		Result result=new ErrorResult("Kayıt Başarısız!");
-		if(emailIsItUsed(employer.getEmail())) {
+		if(emailIsItUsed(employer.getEmail()) 
+				&& Objects.equal(passwordAgain, employer.getPassword()) 
+				&& emailDomainChekService.checkDomain(employer.getEmail(), employer.getWebsite())
+				&& employer.getPhoneNumber().length()!=11) {
 			emailSendService.emailSend(employer.getEmail());
-			employer.setVerificationStatus(false); //default 
+			employer.setVerificationStatus(false); //default
 			this.employerDao.save(employer);
 			result = new SuccessResult("Kayıt Başarılı!");
 		}
