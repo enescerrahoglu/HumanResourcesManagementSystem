@@ -93,6 +93,9 @@ CREATE TABLE public.job_advertisements
     employer_id integer NOT NULL,
     position_id integer NOT NULL,
     release_date date NOT NULL,
+    approval_status boolean NOT NULL,
+    work_time_type_id integer NOT NULL,
+    work_type_id integer NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -117,6 +120,14 @@ CREATE TABLE public.language_levels
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.photos
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    cv_id integer NOT NULL,
+    photo_url character varying(500) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -173,6 +184,20 @@ CREATE TABLE public.work_experiences
     workplace_name character varying(100) NOT NULL,
     starting_date character varying(50) NOT NULL,
     ending_date character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.work_time_types
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(100),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.work_types
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying(100) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -255,6 +280,18 @@ ALTER TABLE public.employers
 
 
 ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (work_time_type_id)
+    REFERENCES public.work_time_types (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (work_type_id)
+    REFERENCES public.work_types (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
     ADD FOREIGN KEY (city_id)
     REFERENCES public.cities (id)
     NOT VALID;
@@ -275,6 +312,12 @@ ALTER TABLE public.job_advertisements
 ALTER TABLE public.job_seekers
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.photos
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.cvs (id)
     NOT VALID;
 
 
