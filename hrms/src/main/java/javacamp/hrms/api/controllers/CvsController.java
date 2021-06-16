@@ -15,6 +15,7 @@ import javacamp.hrms.business.abstracts.CvService;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.Cv;
+import javacamp.hrms.entities.dtos.CvWithJobSeekerDto;
 
 @RestController
 @RequestMapping("/api/cvs")
@@ -41,5 +42,10 @@ public class CvsController {
 	@PostMapping("/getByCvIdForJobSeeker_UserId")
 	public DataResult<List<Cv>> getByCvIdForJobSeeker_UserId(@RequestParam int userId){
 		return this.cvService.getByCvIdForJobSeeker_UserId(userId);
+	}
+	
+	@GetMapping("/getCvWithJobSeekerDetails")
+	public DataResult<List<CvWithJobSeekerDto>> getCvWithJobSeekerDetails(int cvId){
+		return this.cvService.getCvWithJobSeekerDetails(cvId);
 	}
 }

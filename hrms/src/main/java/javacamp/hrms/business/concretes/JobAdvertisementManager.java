@@ -36,7 +36,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		Sort sort = Sort.by(Direction.ASC, "applicationDeadline");
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort), "iş ilanları listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort), "İş ilanları listelendi.");
 	}
 
 	@Override

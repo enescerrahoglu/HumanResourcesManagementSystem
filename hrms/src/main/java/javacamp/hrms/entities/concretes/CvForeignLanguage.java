@@ -1,5 +1,6 @@
 package javacamp.hrms.entities.concretes;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class CvForeignLanguage {
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "foreign_language_id")
 	private ForeignLanguage foreignLanguage;
 	

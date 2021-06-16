@@ -12,6 +12,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CvSocialMediaDao;
 import javacamp.hrms.entities.concretes.CvSocialMedia;
+import javacamp.hrms.entities.dtos.CvSocialMediaWithSocialMediaDto;
 
 @Service
 public class CvSocialMediaManager implements CvSocialMediaService {
@@ -33,6 +34,11 @@ public class CvSocialMediaManager implements CvSocialMediaService {
 	public Result add(CvSocialMedia cvSocialMedia) {
 		this.cvSocialMediaDao.save(cvSocialMedia);
 		return new SuccessResult("CV'ye sosyal medya bilgileri eklendi.");
+	}
+
+	@Override
+	public DataResult<List<CvSocialMediaWithSocialMediaDto>> getCvSocialMediaWithSocialMediaDetails(int cvId) {
+		return new SuccessDataResult<List<CvSocialMediaWithSocialMediaDto>>(this.cvSocialMediaDao.getCvSocialMediaWithSocialMediaDetails(cvId), "Sosyal medya platformları listelendi");
 	}
 	
 }

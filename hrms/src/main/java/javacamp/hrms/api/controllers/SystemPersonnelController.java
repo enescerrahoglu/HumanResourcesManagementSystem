@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import javacamp.hrms.entities.concretes.SystemPersonnel;
 
 @RestController
 @RequestMapping("/api/systemPersonnel")
+@CrossOrigin
 public class SystemPersonnelController {
 
 	private SystemPersonnelService systemPersonnelService;

@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javacamp.hrms.entities.abstracts.Entities;
@@ -28,21 +28,23 @@ import lombok.NoArgsConstructor;
 public class Employer extends User implements Entities {
 	
 	@NotNull(message = "Şirket ismi boş bırakılamaz!")
+	@NotBlank
 	@Column(name = "company_name")
 	private String companyName;
 	
 	@NotNull
+	@NotBlank
 	@Column(name = "website")
 	private String website;
 	
 	@NotNull
+	@NotBlank
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
 	@Column(name="verification_status")
 	private boolean verificationStatus;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisement;
 

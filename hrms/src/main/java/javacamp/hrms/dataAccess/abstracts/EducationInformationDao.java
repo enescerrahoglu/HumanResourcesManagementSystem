@@ -18,5 +18,5 @@ public interface EducationInformationDao extends JpaRepository<EducationInformat
 			+ " Inner Join JobSeeker j ON e.cv.jobSeeker.id = j.id"
 			+ " where j.id=?1 ORDER BY e.graduationDate DESC")
 	List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>
-	getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int userId);
+	getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int cvId);
 }

@@ -12,6 +12,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CvDao;
 import javacamp.hrms.entities.concretes.Cv;
+import javacamp.hrms.entities.dtos.CvWithJobSeekerDto;
 
 @Service
 public class CvManager implements CvService {
@@ -38,6 +39,11 @@ public class CvManager implements CvService {
 	@Override
 	public DataResult<List<Cv>> getByCvIdForJobSeeker_UserId(int userId) {
 		return new SuccessDataResult<List<Cv>>(this.cvDao.getByCvIdForJobSeekerId(userId));
+	}
+
+	@Override
+	public DataResult<List<CvWithJobSeekerDto>> getCvWithJobSeekerDetails(int cvId) {
+		return new SuccessDataResult<List<CvWithJobSeekerDto>>(this.cvDao.getCvWithJobSeekerDetails(cvId), "Cv listelendi.");
 	}
 	
 }

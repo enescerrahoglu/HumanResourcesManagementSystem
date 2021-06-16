@@ -37,23 +37,22 @@ public class JobSeekerManager implements JobSeekerService {
 	}
 	
 	@Override
-	public Result register(JobSeeker jobSeeker, String passwordAgain) {
-		Result result = new ErrorResult("Kayıt Başarısız!");
-		if (emailCheckService.emailCheck(jobSeeker.getEmail())
-				&& emailIsItUsed(jobSeeker.getEmail())
+	public Result register(JobSeeker jobSeeker, String passwordAgain, long validationCode) {
+		Result result = new ErrorResult("Kayıt başarısız!");
+		if (emailCheckService.emailCheck(jobSeeker.getEmail()) && emailIsItUsed(jobSeeker.getEmail())
 				&& identificationNumberIsItUsed(jobSeeker.getIdentificationNumber())
 				&& mernisCheckService.checkIfRealPerson(jobSeeker)
 				&& Objects.equal(passwordAgain, jobSeeker.getPassword())) {
 			emailSendService.emailSend(jobSeeker.getEmail());
 			this.jobSeekerDao.save(jobSeeker);
-			result = new SuccessResult("Kayıt Başarılı.");
+			result = new SuccessResult("Kayıt başarılı.");
 		}
 		return result;
 	}
 
 	@Override
 	public DataResult<List<JobSeeker>> getAll() {
-		return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Data Listelendi");
+		return new SuccessDataResult<>(this.jobSeekerDao.findAll(), "Data listelendi.");
 	}
 
 	@Override

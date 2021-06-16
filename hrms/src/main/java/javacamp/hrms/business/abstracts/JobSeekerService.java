@@ -7,7 +7,7 @@ import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.JobSeeker;
 
 public interface JobSeekerService {
-	public Result register(JobSeeker jobSeeker, String passwordAgain);
+	public Result register(JobSeeker jobSeeker, String passwordAgain, long validationCode);
 	
 	public DataResult<List<JobSeeker>> getAll();
 	public List<String> getAllEmails();

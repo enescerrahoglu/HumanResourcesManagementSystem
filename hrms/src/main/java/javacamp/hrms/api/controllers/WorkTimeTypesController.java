@@ -8,24 +8,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javacamp.hrms.business.abstracts.ForeignLanguageService;
+import javacamp.hrms.business.abstracts.WorkTimeTypeService;
 import javacamp.hrms.core.utilities.results.DataResult;
-import javacamp.hrms.entities.concretes.ForeignLanguage;
+import javacamp.hrms.entities.concretes.WorkTimeType;
 
 @RestController
-@RequestMapping("/api/foreignLanguages")
+@RequestMapping("/api/workTimeTypes")
 @CrossOrigin
-public class ForeignLanguagesController {
-	private ForeignLanguageService foreignLanguageService;
-
-	@Autowired
-	public ForeignLanguagesController(ForeignLanguageService foreignLanguageService) {
-		super();
-		this.foreignLanguageService = foreignLanguageService;
-	}
+public class WorkTimeTypesController {
 	
+	private WorkTimeTypeService workTimeTypeService;
+	
+	@Autowired
+	public WorkTimeTypesController(WorkTimeTypeService workTimeTypeService) {
+		super();
+		this.workTimeTypeService = workTimeTypeService;
+	}
+
 	@GetMapping("/getAll")
-	public DataResult<List<ForeignLanguage>> getAll() {
-		return this.foreignLanguageService.getAll();
+	public DataResult<List<WorkTimeType>> getAll(){
+		return this.workTimeTypeService.getAll();
 	}
 }

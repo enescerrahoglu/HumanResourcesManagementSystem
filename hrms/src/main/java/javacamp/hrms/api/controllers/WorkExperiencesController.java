@@ -3,6 +3,7 @@ package javacamp.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +15,12 @@ import javacamp.hrms.business.abstracts.WorkExperienceService;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.WorkExperience;
+import javacamp.hrms.entities.dtos.WorkExperienceWithCvWithJobPositionDto;
 import javacamp.hrms.entities.dtos.WorkExperienceWithCvWithJobSeekerDto;
 
 @RestController
 @RequestMapping("/api/workExperiences")
+@CrossOrigin
 public class WorkExperiencesController {
 	private WorkExperienceService workExperienceService;
 
@@ -40,5 +43,10 @@ public class WorkExperiencesController {
 	@PostMapping("/getWorkExperienceWithCvWithJobSeekerDetails")
 	public DataResult<List<WorkExperienceWithCvWithJobSeekerDto>> getWorkExperienceWithCvWithJobSeekerDetails(@RequestParam int userId){
 		return this.workExperienceService.getWorkExperienceWithCvWithJobSeekerDetails(userId);
+	}
+	
+	@GetMapping("/getWorkExperienceWithCvWithJobPositionDetails")
+	public DataResult<List<WorkExperienceWithCvWithJobPositionDto>> getWorkExperienceWithCvWithJobPositionDetails(@RequestParam int cvId){
+		return this.workExperienceService.getWorkExperienceWithCvWithJobPositionDetails(cvId);
 	}
 }

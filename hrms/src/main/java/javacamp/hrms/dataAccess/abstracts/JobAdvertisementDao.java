@@ -29,6 +29,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	@Query("UPDATE JobAdvertisement SET advertisementStatus = false WHERE jobAdvertisementId=:jobAdvertisementId AND employer.id=:employerId")
 	int updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(@Param("jobAdvertisementId") int jobAdvertisementId, @Param("employerId") int employerId);
 	
-	@Query("Select new javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDto(ja.id, e.companyName , p.jobPositionName , ja.positionAmount, ja.releaseDate, ja.applicationDeadline) From JobAdvertisement ja Inner Join ja.employer e Inner Join ja.position p")
+	@Query("Select new javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDto(ja.jobAdvertisementId, e.companyName , p.jobPositionName , ja.positionAmount, ja.releaseDate, ja.applicationDeadline) From JobAdvertisement ja Inner Join ja.employer e Inner Join ja.jobPosition p")
 	List<JobAdvertisementWithEmployerWithJobPositionDto> getJobAdvertisementWithEmployerWithJobPositionDetails();
 }

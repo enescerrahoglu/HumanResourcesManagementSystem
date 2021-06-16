@@ -40,10 +40,8 @@ public class JobPositionManager implements JobPositionService {
 	
 	public boolean positionIsItUsed(String positionName) {
 		boolean result = true;
-		for (int i = 0; i < getAll().size(); i++) {
-			if (getAll().get(i).getJobPositionName() == positionName) {
-				result = false;
-			}
+		if(this.jobPositionDao.getAllPositionName().contains(positionName)) {
+			result = false;
 		}
 		return result;
 	}

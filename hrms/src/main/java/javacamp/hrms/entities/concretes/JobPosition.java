@@ -33,7 +33,10 @@ public class JobPosition {
 	@Column(name = "name")
 	private String jobPositionName;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "position")
+	@OneToMany(mappedBy = "jobPosition")
 	private List<JobAdvertisement> jobAdvertisement;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobPosition")
+	private List<WorkExperience> workExperiences;
 }

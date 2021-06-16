@@ -12,6 +12,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CvTechnologyDao;
 import javacamp.hrms.entities.concretes.CvTechnology;
+import javacamp.hrms.entities.dtos.CvTechnologyWithTechnologyDto;
 
 @Service
 public class CvTechnologyManager implements CvTechnologyService {
@@ -33,6 +34,11 @@ public class CvTechnologyManager implements CvTechnologyService {
 	public Result add(CvTechnology cvTechnology) {
 		this.cvTechnologyDao.save(cvTechnology);
 		return new SuccessResult("CV'ye teknoloji eklendi.");
+	}
+
+	@Override
+	public DataResult<List<CvTechnologyWithTechnologyDto>> getCvTechnologyWithTechnologydetails(int cvId) {
+		return new SuccessDataResult<List<CvTechnologyWithTechnologyDto>>(this.cvTechnologyDao.getCvTechnologyWithTechnologydetails(cvId),"Teknolojiler listelendi.");
 	}
 
 }

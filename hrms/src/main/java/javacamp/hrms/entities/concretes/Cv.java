@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +24,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cvs")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cvForeignLanguage"})
 public class Cv {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int cvId;
-	
-	@Column(name = "photo_link")
-	private String photoLink;
 	
 	@Column(name = "objective")
 	private String objective;

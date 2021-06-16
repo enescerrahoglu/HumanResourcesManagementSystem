@@ -32,13 +32,16 @@ public class EducationInformationManager implements EducationInformationService 
 
 	@Override
 	public Result add(EducationInformation educationInformation) {
+		if(educationInformation.getGraduationDate().isEmpty()) {
+			educationInformation.setGraduationDate("Devam ediyor.");
+		}
 		this.educationInformationDao.save(educationInformation);
 		return new SuccessResult("CV'ye eğitim bilgisi eklendi.");
 	}
 
 	@Override
-	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int userId) {
-		return new SuccessDataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>>(this.educationInformationDao.getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(userId));
+	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int cvId) {
+		return new SuccessDataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>>(this.educationInformationDao.getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(cvId));
 	}
 
 }

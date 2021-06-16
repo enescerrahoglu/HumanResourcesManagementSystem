@@ -40,7 +40,7 @@ public class EducationInformationsController {
 	}
 	
 	@GetMapping("/getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails")
-	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(@RequestParam int userId){
-		return this.educationInformationService.getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(userId);
+	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(@RequestParam int cvId){
+		return this.educationInformationService.getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(cvId);
 	}
 }

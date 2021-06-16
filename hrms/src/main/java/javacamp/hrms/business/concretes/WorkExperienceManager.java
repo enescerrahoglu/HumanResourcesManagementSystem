@@ -12,6 +12,7 @@ import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.WorkExperienceDao;
 import javacamp.hrms.entities.concretes.WorkExperience;
+import javacamp.hrms.entities.dtos.WorkExperienceWithCvWithJobPositionDto;
 import javacamp.hrms.entities.dtos.WorkExperienceWithCvWithJobSeekerDto;
 
 @Service
@@ -41,7 +42,12 @@ public class WorkExperienceManager implements WorkExperienceService {
 
 	@Override
 	public DataResult<List<WorkExperienceWithCvWithJobSeekerDto>> getWorkExperienceWithCvWithJobSeekerDetails(int userId) {
-		return new SuccessDataResult<List<WorkExperienceWithCvWithJobSeekerDto>>(this.workExperienceDao.getWorkExperienceWithCvWithJobSeekerDateils(userId));
+		return new SuccessDataResult<List<WorkExperienceWithCvWithJobSeekerDto>>(this.workExperienceDao.getWorkExperienceWithCvWithJobSeekerDetails(userId));
+	}
+
+	@Override
+	public DataResult<List<WorkExperienceWithCvWithJobPositionDto>> getWorkExperienceWithCvWithJobPositionDetails(int cvId) {
+		return new SuccessDataResult<List<WorkExperienceWithCvWithJobPositionDto>>(this.workExperienceDao.getWorkExperienceWithCvWithJobPositionDetails(cvId), "İş tecrübeleri listelendi.");
 	}
 
 }

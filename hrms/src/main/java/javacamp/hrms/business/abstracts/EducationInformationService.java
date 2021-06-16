@@ -10,5 +10,5 @@ import javacamp.hrms.entities.dtos.EducationInformationWithCvWithUniversityWithU
 public interface EducationInformationService {
 	public DataResult<List<EducationInformation>> getAll();
 	public Result add(EducationInformation educationInformation);
-	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int userId);
+	public DataResult<List<EducationInformationWithCvWithUniversityWithUniversityDepartmentDto>> getEducationInformationWithCvWithUniversityWithUniversityDepartmentDetails(int cvId);
 }
