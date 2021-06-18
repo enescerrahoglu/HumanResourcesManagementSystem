@@ -9,7 +9,7 @@ import javacamp.hrms.entities.dtos.JobAdvertisementWithEmployerWithJobPositionDt
 
 public interface JobAdvertisementService {
 	
-	public List<JobAdvertisement> getAll();
+	public DataResult<List<JobAdvertisement>> getAll();
 	
 	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id);
 	

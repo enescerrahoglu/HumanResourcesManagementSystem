@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.JobPositionService;
+import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.ErrorResult;
 import javacamp.hrms.core.utilities.results.Result;
+import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.JobPositionDao;
 import javacamp.hrms.entities.concretes.JobPosition;
@@ -24,8 +26,8 @@ public class JobPositionManager implements JobPositionService {
 	}
 	
 	@Override
-	public List<JobPosition> getAll() {
-		return jobPositionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll());
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class JobAdvertisementsController {
 	}
 
 	@GetMapping("/getAll")
-	public List<JobAdvertisement> getAll() {
+	public DataResult<List<JobAdvertisement>> getAll() {
 		return this.jobAdvertisementService.getAll();
 	}
 	

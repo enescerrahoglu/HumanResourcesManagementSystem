@@ -29,8 +29,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 	
 	@Override
-	public List<JobAdvertisement> getAll() {
-		return this.jobAdvertisementDao.findAll();
+	public DataResult<List<JobAdvertisement>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(), "İş ilanları listelendi");
 	}
 
 	@Override

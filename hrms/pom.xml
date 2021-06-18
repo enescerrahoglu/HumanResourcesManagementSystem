@@ -74,11 +74,6 @@
 			<version>6.1.7.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>com.cloudinary</groupId>
-			<artifactId>cloudinary-http44</artifactId>
-			<version>1.29.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.4.3</version>
@@ -92,6 +87,11 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		
+		<dependency>
+	        <groupId>com.cloudinary</groupId>
+	        <artifactId>cloudinary-http44</artifactId>
+	        <version>1.29.0</version>
+	    </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
